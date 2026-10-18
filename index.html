@@ -93,7 +93,7 @@
      EINSTELLUNG: Adresse der Google-Web-App (endet auf /exec).
      Bereitstellen → Bereitstellungen verwalten → Web-App-URL kopieren.
      ============================================================= */
-  var APP_URL = 'https://script.google.com/macros/s/AKfycbx5z5FNns1hFn3-Erazgx9pyhhjE69iPHD82mbMqJa36cjobGb2Mozru_Lv5CWrPFiF/exec';
+  var APP_URL = 'https://script.google.com/macros/s/HIER_DIE_ID_EINTRAGEN/exec';
 
   var RT_KEY = 'go_klassenliste_rt';
   var $ = function (id) { return document.getElementById(id); };
@@ -190,12 +190,15 @@
         document.body.appendChild(a); a.click(); a.remove(); closeSheet();
       });
     }
-    add('Öffnen', 'second', function () {
-      window.open(openUrl, '_blank');
-    });
+    // „Öffnen“ nur am PC/Android: auf dem iPhone kann eine App vom Home-Bildschirm solche Dateien
+    // nicht in einem neuen Fenster anzeigen (es erscheint nur eine weiße Seite).
+    if (!isIOS || !canShare) {
+      add('Öffnen', 'second', function () { window.open(openUrl, '_blank'); });
+    }
     add('Schließen', 'cancel', closeSheet);
-    if (isIOS && isPdf) hint = '„Teilen“ → „In Dateien sichern“, „Drucken“ oder per Mail/Messenger senden.';
-    if (isIOS && isVcf) hint = 'Falls „Kontakte“ beim Teilen nicht erscheint: „Öffnen“ wählen → „Neuen Kontakt erstellen“.';
+    if (isIOS && isPdf) hint = '„Teilen“ öffnet das iPhone-Menü: „In Dateien sichern“, „Drucken“ oder per Mail/Messenger senden.';
+    if (isIOS && isVcf) hint = '„Teilen“ → „Kontakte“ wählen. Wird „Kontakte“ nicht angeboten: „In Dateien sichern“ wählen, dann in der Dateien-App auf die Datei tippen → „Kontakte hinzufügen“.';
+    if (isIOS && !isPdf && !isVcf) hint = '„Teilen“ → „In Dateien sichern“ oder per Mail senden; öffnen lässt sich die Tabelle z. B. mit Numbers.';
     $('sheetHint').textContent = hint;
     $('sheetBg').style.display = 'block';
     requestAnimationFrame(function () { $('sheet').classList.add('open'); });

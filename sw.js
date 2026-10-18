@@ -1,7 +1,7 @@
 /* Service Worker der App-Startseite.
    Speichert nur die Startseite selbst (Symbole, Manifest) – niemals Daten der Klassenliste.
    Die Klassenliste wird immer frisch von Google geladen. */
-var CACHE = 'klassenliste-start-v1';
+var CACHE = 'klassenliste-start-v2';
 var FILES = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {

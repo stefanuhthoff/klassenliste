@@ -1,0 +1,17 @@
+{
+  "name": "Klassenliste – Gymnasium Othmarschen",
+  "short_name": "Klassenliste",
+  "description": "Kontaktdaten, Klassenliste, Geburtstage und Jahresplanung der Klasse",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#A11135",
+  "theme_color": "#A11135",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
